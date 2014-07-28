@@ -5,7 +5,7 @@ IP=${1:?Need an IP}
 echo bypass $IP
 
 function is_exist {
-	[[ -n `iptables -t nat -L | egrep "^ACCEPT.+ $1 "` ]]
+	[[ -n `iptables -t nat -L -n | egrep "^ACCEPT.+ $1 "` ]]
 }
 
 function bypass {
@@ -16,4 +16,4 @@ if ! is_exist $1; then
 	bypass $1
 fi
 
-iptables -t nat --list
+iptables -t nat -L -n

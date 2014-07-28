@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PORT=5000
-LOG=/var/log/bypass-daemon
+LOG=/var/log/bypass-daemon.log
 CMD=/opt/git-repo/config/iptables/bypass.sh
 
 
