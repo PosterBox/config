@@ -26,6 +26,12 @@ clear_all_rules
 redirect_http
 if [[ $1 == "standalone" ]]; then
 	redirect_dns
+elif [[ $1 == "auto" ]]; then
+	if [[ -n `mii-tool eth0 | grep "link ok"` ]]; then
+		forward_packet
+	else
+		redirect_dns
+	fi		
 else
 	forward_packet
 fi

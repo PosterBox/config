@@ -1,6 +1,8 @@
 #!/bin/bash
 
 PORT=5000
+LOG=/var/log/bypass-daemon
+CMD=/opt/git-repo/config/iptables/bypass.sh
 
 
 function start {
@@ -19,8 +21,12 @@ function check_ip {
 
 function process {
 	echo add IP $1
-	./bypass.sh $1
+	$CMD $1
 }
 
+if [[ $1 == "start" ]]; then
+	start $PORT
+else
+	nohup "$0" start > $LOG &
+fi
 
-start $PORT
