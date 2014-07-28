@@ -36,6 +36,10 @@ server {
 		proxy_pass http://127.0.0.1:3000;
 	}
 
+	location = /service/bypass {
+		proxy_pass http://127.0.0.1:3000/service/bypass?ip=$remote_addr;
+	}
+	
 	location ^~ /service/ {
 		proxy_pass http://127.0.0.1:3000;
 	}
