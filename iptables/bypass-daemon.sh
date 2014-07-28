@@ -1,11 +1,12 @@
 #!/bin/bash
 
-PORT=3000
+PORT=5000
 
 
 function start {
 nc -kl $1 | while IFS=, read -a p; do
 	IP=${p[0]}
+	echo receive bypass request for $IP
 	if check_ip $IP; then
 		process $IP
 	fi	
